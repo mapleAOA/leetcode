@@ -1,0 +1,29 @@
+class Solution {
+public:
+    int maxVowels(string s, int k) {
+        map<char,int> need;
+        need['a']=1;
+        need['e']=1;
+        need['i']=1;
+        need['o']=1;
+        need['u']=1;
+        int ans=0,tem=0;
+        int n=s.length();
+        for(int i=0;i<k;i++){
+            if(need[s[i]]==1){
+                tem++;
+            }
+        }
+        ans=tem;
+        for(int i=k;i<n;i++){
+            if(need[s[i]]==1){
+                tem++;
+            }
+            if(need[s[i-k]]==1){
+                tem--;
+            }
+            ans=max(ans,tem);
+        }
+        return ans;
+    }
+}
