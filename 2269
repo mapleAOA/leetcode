@@ -1,0 +1,24 @@
+class Solution {
+public:
+    int divisorSubstrings(int num, int k) {
+        string str=to_string(num);
+        int n=str.length();
+        int tem=0,ans=0;
+        for(int i=0;i<k;i++){
+            tem=tem*10+(str[i]-'0');
+        }
+        if(num%tem==0){
+            ans++;
+        }
+        int mo=(int)pow(10,k-1);
+        for(int i=k;i<n;i++){
+            tem=(tem%mo)*10+(str[i]-'0');
+            if(tem!=0){
+                if(num%tem==0){
+            ans++;
+                }   
+            }
+        }
+        return ans;
+    }
+};
