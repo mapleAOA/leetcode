@@ -1,0 +1,26 @@
+class Solution {
+public:
+    vector<int> getAverages(vector<int>& nums, int k) {
+        /*if(k==0){
+            return ans;
+        }*/
+        int n=nums.size();
+        vector<int> ans(n,-1);
+        long long tem=0;
+        int left=0,right=2*k;
+        if(right>=n){
+            return ans;
+        }
+        for(int i=0;i<=right;i++){
+            tem+=(long long)nums[i];
+        }
+        ans[(left+right)/2]=(int)(tem/(long long)(2*k+1));
+        while(right+1<n){
+            tem=tem-(long long)nums[left]+(long long)nums[right+1];
+            left++;
+            right++;
+            ans[(left+right)/2]=(int)(tem/(long long)(2*k+1));
+        }
+        return ans;
+    }
+};
